@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<body>
+<p>Acceder a los elementos de un objeto</p>
+<p id="demo"></p>
+<script>
+var objeto = "";
+objeto = {"boleta":"2016600547","balance":{
+  "activo":{"materia":"Inteligencia de Negocios","industria":"6", "infraestructura":22691,"bancos":2255,"insumo1":266,"insumo2":206,"en_proceso":1121,"mercancias":2399,"clientes":3250,
+    "total":"function(){total=objeto.balance.activo.infraestructura+objeto.balance.activo.bancos+objeto.balance.activo.insumo1+objeto.balance.activo.insumo2+objeto.balance.activo.en_proceso+objeto.balance.activo.mercancias+objeto.balance.activo.clientes; return total;}"},
+  "pasivo":{"hipotecas":16376,"proveedores":3221,
+    "total":"function(){total=objeto.balance.pasivo.hipotecas+objeto.balance.pasivo.proveedores; return total;}"},
+  "capital":{"capital_social":6502,
+    "utilidades":"function(){utilidades=(objeto.balance.activo.total())-(objeto.balance.pasivo.total()+objeto.balance.capital.capital_social); return utilidades;}"},
+    "indicadores":{"liquidez":"function(){liquidez=objeto.balance.pasivo.proveedores/objeto.balance.activo.bancos; return liquidez;}",
+            "circulante":"function(){circulante=objeto.balance.activo.total()-objeto.balance.activo.infraestructura; return circulante;}",
+            "recuperacion":"function(){recuperacion=objeto.balance.capital.utilidades()/objeto.balance.capital.capital_social; return recuperacion;}"}}
+};
+
+objeto.balance.activo.total = eval("("+ objeto.balance.activo.total + ")");
+objeto.balance.pasivo.total = eval("("+ objeto.balance.pasivo.total + ")");
+objeto.balance.capital.utilidades = eval("("+ objeto.balance.capital.utilidades + ")");
+objeto.balance.indicadores.liquidez = eval("("+ objeto.balance.indicadores.liquidez + ")");
+objeto.balance.indicadores.circulante = eval("("+ objeto.balance.indicadores.circulante + ")");
+objeto.balance.indicadores.recuperacion = eval("("+ objeto.balance.indicadores.recuperacion + ")");
+
+document.getElementById("demo").innerHTML =
+"Boleta: "+ objeto.boleta + "<br>"
++ "Materia: "+objeto.balance.activo.materia + "<br>"
++ "Industria: "+objeto.balance.activo.industria + "<br><br>"
++"ACTIVO:"+"<br><br>"
++ "Infraestructura: "+objeto.balance.activo.infraestructura + "<br>"
++ "Bancos: "+ objeto.balance.activo.bancos + "<br>"
++ "Insumos 1: "+objeto.balance.activo.insumo1 + "<br>"
++ "Insumos 2: "+objeto.balance.activo.insumo2 + "<br>"
++ "En proceso: "+objeto.balance.activo.en_proceso + "<br>"
++ "Mercancias: "+objeto.balance.activo.mercancias + "<br>"
++ "Clientes: "+objeto.balance.activo.clientes + "<br><br>"
++"PASIVO:"+"<br><br>"
++ "Hipotecas: "+objeto.balance.pasivo.hipotecas + "<br>"
++ "Proveedores: "+objeto.balance.pasivo.proveedores + "<br><br>"
++ "Capital social: "+objeto.balance.capital.capital_social + "<br><br>"
++ "Total activo: "+objeto.balance.activo.total() + "<br>"
++ "Total pasivo: "+objeto.balance.pasivo.total() + "<br><br>"
++ "Utilidades: "+objeto.balance.capital.utilidades() + "<br>";
+</script>
+</body>
+</html>
